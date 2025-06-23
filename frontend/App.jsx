@@ -132,13 +132,18 @@ const styles = {
     wordWrap: 'break-word',
   },
   input: {
-    padding: '14px',
-    borderRadius: '8px',
-    border: 'none',
-    fontSize: '1rem',
-    outline: 'none',
-    width: '100%',
-    boxSizing: 'border-box',
-  },
-};
+  position: 'fixed',
+  bottom: 0,
+  left: 0,
+  width: '100%',
+  padding: '14px',
+  borderRadius: 0,
+  border: 'none',
+  fontSize: '1rem',
+  outline: 'none',
+  zIndex: 1000,
+  backgroundColor: '#101820',
+  color: 'white',
+}
+
 
