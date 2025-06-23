@@ -6,22 +6,29 @@ import OpenAI from 'openai';
 dotenv.config();
 
 const app = express();
-app.use(cors());
+
+// ✅ Fix CORS to allow your frontend domain
+app.use(cors({
+  origin: 'https://snowball-frontend-ih7a.onrender.com', // 🔁 Your deployed frontend URL
+  methods: ['GET', 'POST'],
+  credentials: true,
+}));
+
 app.use(express.json());
 
-// Initialize OpenAI client
+// ✅ Initialize OpenAI client
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
 
-// POST endpoint for chat
+// ✅ POST endpoint for chat
 app.post('/api/chat', async (req, res) => {
   const { message } = req.body;
   if (!message) return res.status(400).json({ error: 'No message provided' });
 
   try {
     const completion = await openai.chat.completions.create({
-      model: 'gpt-4', // or 'gpt-3.5-turbo' if you prefer
+      model: 'gpt-4', // Or 'gpt-3.5-turbo'
       messages: [{ role: 'user', content: message }],
     });
 
@@ -33,11 +40,11 @@ app.post('/api/chat', async (req, res) => {
   }
 });
 
-// ✅ Basic health check
+// ✅ Health check route
 app.get('/', (req, res) => {
   res.send('❄️ Snowball backend is live!');
 });
 
-// Start the server
+// ✅ Start the server
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`✅ Server running on port ${PORT}`));
