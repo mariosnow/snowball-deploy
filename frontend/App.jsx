@@ -95,10 +95,10 @@ const styles = {
     flexDirection: 'column',
     background: '#101820',
     color: 'white',
-    padding: '20px',
+    padding: '10px',
   },
   header: {
-    fontSize: '2rem',
+    fontSize: '1.5rem',
     textAlign: 'center',
     marginBottom: '10px',
   },
@@ -111,6 +111,7 @@ const styles = {
     border: '1px solid #333',
     borderRadius: '8px',
     marginBottom: '10px',
+    maxHeight: 'calc(100vh - 150px)',
   },
   userMsg: {
     alignSelf: 'flex-end',
@@ -118,7 +119,8 @@ const styles = {
     padding: '8px 12px',
     borderRadius: '16px',
     margin: '4px',
-    maxWidth: '70%',
+    maxWidth: '80%',
+    wordWrap: 'break-word',
   },
   botMsg: {
     alignSelf: 'flex-start',
@@ -126,13 +128,17 @@ const styles = {
     padding: '8px 12px',
     borderRadius: '16px',
     margin: '4px',
-    maxWidth: '70%',
+    maxWidth: '80%',
+    wordWrap: 'break-word',
   },
   input: {
-    padding: '12px',
+    padding: '14px',
     borderRadius: '8px',
     border: 'none',
     fontSize: '1rem',
     outline: 'none',
+    width: '100%',
+    boxSizing: 'border-box',
   },
 };
+
