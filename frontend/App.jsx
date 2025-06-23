@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 
-const backendBaseUrl = 'https://snowball-backend.onrender.com';
+const backendBaseUrl = 'https://snowball-backend-d7sv.onrender.com;
 
 export default function App() {
   const [messages, setMessages] = useState([]);
