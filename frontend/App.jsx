@@ -8,17 +8,14 @@ export default function App() {
   const inputRef = useRef(null);
   const [isSpeaking, setIsSpeaking] = useState(false);
 
-  // Focus on input when app loads
   useEffect(() => {
     inputRef.current?.focus();
   }, []);
 
-  // Load voices
   useEffect(() => {
     window.speechSynthesis.onvoiceschanged = () => {};
   }, []);
 
-  // Find female "Tammy" voice
   const getTammyVoice = () => {
     const voices = window.speechSynthesis.getVoices();
     return (
@@ -95,10 +92,12 @@ const styles = {
     flexDirection: 'column',
     background: '#101820',
     color: 'white',
-    padding: '10px',
+    padding: '20px',
+    paddingBottom: '60px', // To avoid being hidden by fixed input
+    boxSizing: 'border-box',
   },
   header: {
-    fontSize: '1.5rem',
+    fontSize: '2rem',
     textAlign: 'center',
     marginBottom: '10px',
   },
@@ -111,7 +110,7 @@ const styles = {
     border: '1px solid #333',
     borderRadius: '8px',
     marginBottom: '10px',
-    maxHeight: 'calc(100vh - 150px)',
+    paddingBottom: '80px', // Push above fixed input
   },
   userMsg: {
     alignSelf: 'flex-end',
@@ -119,8 +118,7 @@ const styles = {
     padding: '8px 12px',
     borderRadius: '16px',
     margin: '4px',
-    maxWidth: '80%',
-    wordWrap: 'break-word',
+    maxWidth: '70%',
   },
   botMsg: {
     alignSelf: 'flex-start',
@@ -128,22 +126,20 @@ const styles = {
     padding: '8px 12px',
     borderRadius: '16px',
     margin: '4px',
-    maxWidth: '80%',
-    wordWrap: 'break-word',
+    maxWidth: '70%',
   },
   input: {
-  position: 'fixed',
-  bottom: 0,
-  left: 0,
-  width: '100%',
-  padding: '14px',
-  borderRadius: 0,
-  border: 'none',
-  fontSize: '1rem',
-  outline: 'none',
-  zIndex: 1000,
-  backgroundColor: '#101820',
-  color: 'white',
-}
-
-
+    position: 'fixed',
+    bottom: 0,
+    left: 0,
+    width: '100%',
+    padding: '14px',
+    borderRadius: 0,
+    border: 'none',
+    fontSize: '1rem',
+    outline: 'none',
+    zIndex: 1000,
+    backgroundColor: '#101820',
+    color: 'white',
+  },
+};
