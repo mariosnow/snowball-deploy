@@ -8,17 +8,24 @@ export default function App() {
   const inputRef = useRef(null);
   const [isSpeaking, setIsSpeaking] = useState(false);
 
+  // Focus on input when app loads
   useEffect(() => {
     inputRef.current?.focus();
   }, []);
 
+  // Load voices
   useEffect(() => {
     window.speechSynthesis.onvoiceschanged = () => {};
   }, []);
 
+  // Find female "Tammy" voice
   const getTammyVoice = () => {
     const voices = window.speechSynthesis.getVoices();
-    return voices.find(v => v.name.toLowerCase().includes('tammy')) || voices.find(v => v.name.includes('Female'));
+    return (
+      voices.find(v => v.name.toLowerCase().includes('tammy')) ||
+      voices.find(v => v.name.toLowerCase().includes('female')) ||
+      voices.find(v => v.lang.startsWith('en') && v.name.toLowerCase().includes('woman'))
+    );
   };
 
   const speak = (text) => {
@@ -50,7 +57,7 @@ export default function App() {
       setMessages(prev => [botMessage, ...prev]);
       speak(data.reply);
     } catch (err) {
-      console.error('Error:', err);
+      console.error('Error sending message:', err);
     }
   };
 
